@@ -82,7 +82,7 @@ while True:
         print("The secret word so far: ", word_so_far)
     if letter not in secret:
         mistakes += 1 
-    draw(mistakes)
+        draw(mistakes)
     if mistakes >= 7:
         print("You lost :(")
         print("The word was: ",secret)
