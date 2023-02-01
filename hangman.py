@@ -67,16 +67,6 @@ while True:
           word_so_far += ' _ '
     if word_so_far == secret:
         print("Congrats, you won :)")
-        print("       ___________      ")
-        print("      '._==_==_=_.'     ")
-        print("      .-\\:      /-.    ")
-        print("     | (|:.     |) |    ")
-        print("      '-|:.     |-'     ")
-        print("        \\::.    /      ")
-        print("         '::. .'        ")
-        print("           ) (          ")
-        print("         _.' '._        ")
-        print("        '-------'       ")
         break
     else:
         print("The secret word so far: ", word_so_far)
