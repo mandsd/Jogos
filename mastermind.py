@@ -2,7 +2,7 @@ import random
 
 # Setting the number of digits in the password and the maximum number of guesses
 DIGITS = 4
-MAX_GUESSES = 15
+MAX_GUESSES = 10
 
 # Generate a random secret code
 def generate_code():
