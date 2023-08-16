@@ -2,6 +2,7 @@
 secret = "movies"
 already_typed = []
 mistakes = 0
+letters_already_typed = []
 
 def draw(mistakes):
     print("  _______     ")
@@ -71,9 +72,16 @@ while True:
     else:
         print("The secret word so far: ", word_so_far)
     if letter not in secret:
-        mistakes += 1 
-        draw(mistakes)
+        if letter in letters_already_typed:
+            print("This letter has already been quoted, try another one!")
+        if letter not in letters_already_typed:
+            mistakes += 1 
+            draw(mistakes)
+            letters_already_typed.append(letter)
+            print("Letters that are not in the word: ", str(letters_already_typed).strip('[]'))
+        print("")
     if mistakes >= 7:
         print("You lost :(")
         print("The word was: ",secret)
         break
+    
