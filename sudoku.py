@@ -1,59 +1,60 @@
-def solve_sudoku(board):
-    # Find the next empty cell
-    row, col = find_empty_cell(board)
+def resolver_sudoku(tabuleiro):
+    # Encontra a próxima célula vazia
+    linha, coluna = encontrar_celula_vazia(tabuleiro)
 
-    # If there are no empty cells, the Sudoku is solved
-    if row is None:
+    # Se não houver células vazias, o Sudoku está resolvido
+    if linha is None:
         return True
 
-    # Try each number from 1 to 9 in the empty cell
+    # Tenta cada número de 1 a 9 na célula vazia
     for num in range(1, 10):
-        if is_valid(board, row, col, num):
-            # Place the number in the empty cell
-            board[row][col] = num
+        if é_valido(tabuleiro, linha, coluna, num):
+            # Coloca o número na célula vazia
+            tabuleiro[linha][coluna] = num
 
-            # Recursively solve the rest of the board
-            if solve_sudoku(board):
+            # Resolve recursivamente o resto do tabuleiro
+            if resolver_sudoku(tabuleiro):
                 return True
 
-            # If the recursive solve failed, backtrack and try the next number
-            board[row][col] = 0
+            # Se a tentativa recursiva falhou, volta atrás e tenta o próximo número
+            tabuleiro[linha][coluna] = 0
 
-    # If no number can be placed in the empty cell, the Sudoku is unsolvable
+    # Se nenhum número pode ser colocado, o Sudoku não tem solução
     return False
 
 
-def find_empty_cell(board):
-    # Find the next empty cell in the board
-    for row in range(9):
-        for col in range(9):
-            if board[row][col] == 0:
-                return row, col
+def encontrar_celula_vazia(tabuleiro):
+    # Procura a próxima célula vazia no tabuleiro
+    for linha in range(9):
+        for coluna in range(9):
+            if tabuleiro[linha][coluna] == 0:
+                return linha, coluna
     return None, None
 
 
-def is_valid(board, row, col, num):
-    # Check if the number can be placed in the cell without violating the Sudoku rules
+def é_valido(tabuleiro, linha, coluna, num):
+    # Verifica se o número pode ser colocado na célula sem violar as regras do Sudoku
 
-    # Check row
-    if num in board[row]:
+    # Verifica a linha
+    if num in tabuleiro[linha]:
         return False
 
-    # Check column
-    if num in [board[i][col] for i in range(9)]:
+    # Verifica a coluna
+    if num in [tabuleiro[i][coluna] for i in range(9)]:
         return False
 
-    # Check 3x3 box
-    box_row = (row // 3) * 3
-    box_col = (col // 3) * 3
-    if num in [board[i][j] for i in range(box_row, box_row + 3) for j in range(box_col, box_col + 3)]:
+    # Verifica o quadrado 3x3
+    linha_caixa = (linha // 3) * 3
+    coluna_caixa = (coluna // 3) * 3
+    if num in [tabuleiro[i][j] for i in range(linha_caixa, linha_caixa + 3)
+                              for j in range(coluna_caixa, coluna_caixa + 3)]:
         return False
 
     return True
 
 
-# Example board
-board = [
+# Exemplo de tabuleiro
+tabuleiro = [
     [5, 3, 0, 0, 7, 0, 0, 0, 0],
     [6, 0, 0, 1, 9, 5, 0, 0, 0],
     [0, 9, 8, 0, 0, 0, 0, 6, 0],
@@ -65,10 +66,10 @@ board = [
     [0, 0, 0, 0, 8, 0, 0, 7, 9]
 ]
 
-# Solve the Sudoku
-if solve_sudoku(board):
-    # Print the solution
-    for row in board:
-        print(row)
+# Resolve o Sudoku
+if resolver_sudoku(tabuleiro):
+    # Imprime a solução
+    for linha in tabuleiro:
+        print(linha)
 else:
-    print("Sudoku is unsolvable.")
+    print("O Sudoku não tem solução.")
