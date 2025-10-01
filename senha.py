@@ -24,7 +24,7 @@ def verificar_tentativa(codigo, tentativa):
 
 # Loop principal do jogo
 def jogar():
-    print('MASTERMIND')
+    print('SENHA')
     print('')
     print('Tente adivinhar o código de {} dígitos em {} tentativas ou menos.'.format(DIGITOS, MAX_TENTATIVAS))
     print('Dígitos vão de 0 a 9.')
